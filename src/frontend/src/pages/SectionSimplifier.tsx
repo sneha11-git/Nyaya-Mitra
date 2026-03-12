@@ -75,7 +75,7 @@ export function SectionSimplifier() {
             <Button
               data-ocid="simplifier.search.button"
               onClick={handleSearch}
-              className="gradient-saffron text-primary-foreground border-0 hover:opacity-90 px-6 font-semibold"
+              className="gradient-saffron text-primary-foreground border-0 hover:opacity-90 px-8 font-bold button-shiny h-11"
             >
               <Search className="w-4 h-4 mr-2" />
               Search
@@ -113,7 +113,7 @@ export function SectionSimplifier() {
               {result ? (
                 <Card
                   data-ocid="simplifier.result.card"
-                  className="card-glow border-border"
+                  className="card-glow border-border hover-glow transition-all duration-500"
                 >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between gap-4">
@@ -167,6 +167,34 @@ export function SectionSimplifier() {
                         <p className="font-body text-sm font-semibold text-saffron">
                           {result.punishment}
                         </p>
+                      </div>
+                    )}
+
+                    {result.aiElaboration && (
+                      <div className="mt-6 border-t border-border pt-6">
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className="w-8 h-8 rounded-full bg-saffron/10 flex items-center justify-center">
+                            <motion.div
+                              animate={{ rotate: [0, 10, -10, 0] }}
+                              transition={{ repeat: Infinity, duration: 2 }}
+                            >
+                              <Scale className="w-4 h-4 text-saffron" />
+                            </motion.div>
+                          </div>
+                          <h4 className="font-display font-semibold text-lg">AI Legal Insights</h4>
+                        </div>
+                        <div className="glass-panel rounded-xl p-5 relative overflow-hidden">
+                          <div className="absolute top-0 right-0 p-3 opacity-10">
+                            <BookOpen className="w-12 h-12" />
+                          </div>
+                          <p className="font-body text-sm leading-relaxed text-foreground/90 relative z-10">
+                            {result.aiElaboration}
+                          </p>
+                          <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
+                            <Badge variant="outline" className="bg-saffron/5 border-saffron/20 text-saffron font-body">Powered by AI</Badge>
+                            <span>Generated for academic & informational purposes</span>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </CardContent>

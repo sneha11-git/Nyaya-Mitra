@@ -88,8 +88,8 @@ export function Home() {
             transition={{ duration: 0.7 }}
           >
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-14 h-14 rounded-full gradient-saffron flex items-center justify-center shadow-saffron">
-                <Scale className="w-8 h-8 text-primary-foreground" />
+              <div className="w-16 h-16 rounded-full gradient-saffron flex items-center justify-center shadow-saffron animate-float">
+                <Scale className="w-9 h-9 text-primary-foreground" />
               </div>
             </div>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
@@ -108,9 +108,9 @@ export function Home() {
               <Link to="/section-simplifier">
                 <Button
                   size="lg"
-                  className="gradient-saffron text-primary-foreground font-semibold px-8 py-3 h-auto hover:opacity-90 shadow-saffron border-0"
+                  className="gradient-saffron text-primary-foreground font-bold px-8 py-3 h-auto hover:opacity-90 shadow-saffron border-0 button-shiny text-lg"
                 >
-                  <BookOpen className="w-5 h-5 mr-2" />
+                  <BookOpen className="w-5 h-5 mr-1" />
                   Explore IPC Sections
                 </Button>
               </Link>
@@ -185,9 +185,10 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
+                whileHover={{ y: -8 }}
               >
                 <Card
-                  className={`card-hover card-glow h-full bg-gradient-to-br ${feature.gradient} border-border`}
+                  className={`card-hover card-glow h-full bg-gradient-to-br ${feature.gradient} border-border hover-glow transition-all duration-300`}
                 >
                   <CardContent className="p-6 flex flex-col h-full">
                     <div

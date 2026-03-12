@@ -30,6 +30,16 @@ const specializationColors: Record<string, string> = {
   "Corporate Law": "bg-indigo-500/15 text-indigo-300 border-indigo-500/25",
 };
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+
 function LawyerCard({ lawyer, index }: { lawyer: Lawyer; index: number }) {
   const initials = lawyer.name
     .split(" ")
@@ -46,57 +56,136 @@ function LawyerCard({ lawyer, index }: { lawyer: Lawyer; index: number }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.07 }}
     >
-      <Card
-        data-ocid={`lawyer.item.${index + 1}`}
-        className="card-hover card-glow border-border"
-      >
-        <CardContent className="p-5">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full gradient-saffron flex items-center justify-center shrink-0 shadow-saffron">
-              <span className="font-display font-bold text-primary-foreground text-sm">
-                {initials}
-              </span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-start justify-between gap-2 mb-2">
-                <h3 className="font-display font-semibold text-lg leading-tight">
-                  {lawyer.name}
-                </h3>
-                <Badge
-                  variant="outline"
-                  className={`shrink-0 font-body text-xs ${colorClass}`}
-                >
-                  {lawyer.specialization}
-                </Badge>
-              </div>
-              {lawyer.experience && (
-                <div className="flex items-center gap-1.5 mb-3 text-muted-foreground">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span className="font-body text-xs">
-                    {lawyer.experience} experience
+      <Dialog>
+        <DialogTrigger asChild>
+          <Card
+            data-ocid={`lawyer.item.${index + 1}`}
+            className="card-hover card-glow border-border cursor-pointer transition-all hover:-translate-y-1 hover:shadow-xl group"
+          >
+            <CardContent className="p-5">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full gradient-saffron flex items-center justify-center shrink-0 shadow-saffron group-hover:scale-110 transition-transform">
+                  <span className="font-display font-bold text-primary-foreground text-sm">
+                    {initials}
                   </span>
                 </div>
-              )}
-              <div className="space-y-1.5">
-                <a
-                  href={`tel:${lawyer.phone}`}
-                  className="flex items-center gap-2 text-sm font-body hover:text-saffron transition-colors group"
-                >
-                  <Phone className="w-4 h-4 text-muted-foreground group-hover:text-saffron" />
-                  <span>{lawyer.phone}</span>
-                </a>
-                <a
-                  href={`mailto:${lawyer.email}`}
-                  className="flex items-center gap-2 text-sm font-body hover:text-saffron transition-colors group"
-                >
-                  <Mail className="w-4 h-4 text-muted-foreground group-hover:text-saffron" />
-                  <span className="truncate">{lawyer.email}</span>
-                </a>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h3 className="font-display font-semibold text-lg leading-tight group-hover:text-saffron transition-colors">
+                      {lawyer.name}
+                    </h3>
+                    <Badge
+                      variant="outline"
+                      className={`shrink-0 font-body text-xs ${colorClass}`}
+                    >
+                      {lawyer.specialization}
+                    </Badge>
+                  </div>
+                  {lawyer.experience && (
+                    <div className="flex items-center gap-1.5 mb-3 text-muted-foreground">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span className="font-body text-xs">
+                        {lawyer.experience} experience
+                      </span>
+                    </div>
+                  )}
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="flex items-center gap-3">
+                      <Phone className="w-4 h-4 text-muted-foreground" />
+                      <Mail className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <span className="text-xs font-body text-saffron opacity-0 group-hover:opacity-100 transition-opacity">
+                      View Profile →
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[500px] glass-panel border-white/10 text-foreground">
+          <DialogHeader>
+            <div className="flex items-center gap-4 mb-2">
+              <div className="w-16 h-16 rounded-full gradient-saffron flex items-center justify-center shadow-saffron">
+                <span className="font-display font-bold text-primary-foreground text-xl">
+                  {initials}
+                </span>
+              </div>
+              <div>
+                <DialogTitle className="font-display text-2xl font-bold">{lawyer.name}</DialogTitle>
+                <Badge className={`mt-1 font-body ${colorClass}`}>{lawyer.specialization}</Badge>
               </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </DialogHeader>
+          <ScrollArea className="max-h-[60vh] pr-4">
+            <div className="space-y-6 py-4">
+              {lawyer.bio && (
+                <div>
+                  <h4 className="font-display font-semibold mb-2 text-saffron">About</h4>
+                  <p className="font-body text-sm leading-relaxed text-foreground/80">{lawyer.bio}</p>
+                </div>
+              )}
+
+              <Separator className="bg-white/10" />
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                  <p className="text-xs text-muted-foreground font-body mb-1">Experience</p>
+                  <p className="font-display font-bold text-lg">{lawyer.experience || "N/A"}</p>
+                </div>
+                <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                  <p className="text-xs text-muted-foreground font-body mb-1">Cases Fought</p>
+                  <p className="font-display font-bold text-lg">{lawyer.casesFought || "150+"}</p>
+                </div>
+              </div>
+
+              {lawyer.strength && lawyer.strength.length > 0 && (
+                <div>
+                  <h4 className="font-display font-semibold mb-3 text-saffron">Core Strengths</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {lawyer.strength.map((s) => (
+                      <Badge key={s} variant="secondary" className="bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20">
+                        {s}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {lawyer.keyFactors && lawyer.keyFactors.length > 0 && (
+                <div>
+                  <h4 className="font-display font-semibold mb-3 text-saffron">Key Factors</h4>
+                  <ul className="space-y-2">
+                    {lawyer.keyFactors.map((f) => (
+                      <li key={f} className="flex items-center gap-2 text-sm font-body text-foreground/80">
+                        <div className="w-1.5 h-1.5 rounded-full bg-saffron" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <Separator className="bg-white/10" />
+
+              <div className="space-y-3">
+                <Button className="w-full gradient-saffron text-primary-foreground font-bold button-shiny h-12" asChild>
+                  <a href={`tel:${lawyer.phone}`}>
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call Now: {lawyer.phone}
+                  </a>
+                </Button>
+                <Button variant="outline" className="w-full border-white/20 hover:bg-white/10 h-12" asChild>
+                  <a href={`mailto:${lawyer.email}`}>
+                    <Mail className="w-4 h-4 mr-2" />
+                    Email Advocate
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </ScrollArea>
+        </DialogContent>
+      </Dialog>
     </motion.div>
   );
 }

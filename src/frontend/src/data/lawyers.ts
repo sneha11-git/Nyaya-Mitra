@@ -5,6 +5,10 @@ export interface Lawyer {
   email: string;
   city: string;
   experience?: string;
+  strength?: string[];
+  casesFought?: number;
+  keyFactors?: string[];
+  bio?: string;
 }
 
 export const lawyers: Lawyer[] = [
@@ -16,6 +20,10 @@ export const lawyers: Lawyer[] = [
     email: "rajan.sharma@legaldelhi.in",
     city: "Delhi",
     experience: "18 years",
+    strength: ["Homicide Cases", "White Collar Crimes"],
+    casesFought: 450,
+    keyFactors: ["Aggressive Defence", "Stellar Track Record", "Client First"],
+    bio: "Adv. Rajan Sharma is a prominent criminal lawyer in Delhi, known for his expertise in complex homicide and financial fraud cases. He has successfully represented clients in both the Sessions Court and the High Court.",
   },
   {
     name: "Adv. Priya Mehta",

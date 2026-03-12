@@ -107,3 +107,70 @@
     border-color: oklch(var(--border));
   }
 }
+
+/* Glassmorphism & Premium UI Effects */
+.glass-panel {
+  background-color: oklch(var(--background) / 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  @apply border border-white/10 shadow-2xl;
+}
+
+.glow-saffron {
+  box-shadow: 0 0 20px -5px hsl(var(--saffron) / 0.5);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px -5px hsl(var(--saffron) / 0.6);
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-shiny {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-shiny::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: 0.5s;
+}
+
+.button-shiny:hover::after {
+  left: 120%;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40 transition-colors;
+}

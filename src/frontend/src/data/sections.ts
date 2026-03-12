@@ -6,6 +6,7 @@ export interface IPCSection {
   bailable: boolean;
   steps: string[];
   punishment?: string;
+  aiElaboration?: string;
 }
 
 export const ipcSections: IPCSection[] = [
@@ -26,6 +27,8 @@ export const ipcSections: IPCSection[] = [
       "You have the right to be informed of the charges against you",
       "Apply for bail through your lawyer at the Sessions Court",
     ],
+    aiElaboration:
+      "Under Section 302 of the IPC, murder is defined as the intentional causing of death. The prosecution must prove 'mens rea' (guilty mind) and 'actus reus' (guilty act). Key legal precedents like *Bachan Singh v. State of Punjab* established the 'rarest of rare' doctrine for the death penalty. Defences often include private defence, sudden provocation, or insanity. Investigation typically focuses on motive, weapon recovery, and forensic evidence (post-mortem).",
   },
   {
     number: "376",
@@ -44,6 +47,8 @@ export const ipcSections: IPCSection[] = [
       "Apply for bail through your lawyer — bail is discretionary in Sessions Court",
       "Cooperate only through your legal counsel",
     ],
+    aiElaboration:
+      "Section 376 is a stringent provision aimed at protecting bodily autonomy. Post the 2013 and 2018 amendments, the definition of rape has been significantly broadened. Legal focus areas include the lack of consent (Section 114A Evidence Act presumption), medical examination reports (DNA profiling), and the victim's statement (which can suffice for conviction if found credible). Trials are conducted in-camera to protect privacy.",
   },
   {
     number: "420",
