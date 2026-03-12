@@ -1,7 +1,6 @@
 # NyayMitra
-## Requested Changes (Diff)
-
-### Add
+##our action plan
+### required features
 - Section Simplifier: user inputs an IPC/BNS section number, backend returns a plain-language explanation
 - What Should I Do Now: given a section, returns whether offence is bailable or non-bailable and recommended next steps
 - Nearby Lawyer Finder: user enters city/area, backend returns a list of sample lawyers with name, specialization, and contact
