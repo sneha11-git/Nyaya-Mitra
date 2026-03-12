@@ -1,8 +1,4 @@
 # NyayMitra
-
-## Current State
-New project. No existing code.
-
 ## Requested Changes (Diff)
 
 ### Add
@@ -12,12 +8,6 @@ New project. No existing code.
 - Landing/home page introducing NyayMitra with navigation to each tool
 - Sample data for ~20 common IPC sections stored in backend
 - Sample lawyer data for major Indian cities
-
-### Modify
-N/A
-
-### Remove
-N/A
 
 ## Implementation Plan
 1. Backend: store IPC section data (number, title, plain-language explanation, bailable status, next steps) and lawyer data (name, city, specialization, phone)
